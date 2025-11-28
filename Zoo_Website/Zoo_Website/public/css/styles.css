@@ -1,0 +1,145 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FEFAE0;
+    font-family: monospace;
+    color: #283618;
+    height: 100vh;
+    overflow: hidden; /* Prevent page scroll */
+}
+
+/* Header (10vh) */
+.header {
+    height: 10vh;
+    background-color: #283618;
+    color: #FEFAE0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.5vh solid #BC6C25;
+}
+
+.header h1 { margin: 0; }
+
+/* Navigation (8vh) */
+.nav {
+    height: 8vh;
+    background-color: #606C38;
+    border-bottom: 0.5vh solid #BC6C25;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+}
+
+.nav a {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    background-color: #283618;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.nav a:hover { background-color: #BC6C25; }
+
+/* Main Content (72vh) */
+.main-content {
+    height: 72.7vh;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2vh;
+
+    
+    box-sizing: border-box;
+}
+
+/* Image Column */
+.image-section {
+    height: 100%;
+}
+
+/* Content for the image division */
+
+.image-placeholder {
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+
+    object-fit: cover;
+
+
+    font-size: 2.5vh;
+    box-sizing: border-box;
+    clip-path: circle(71.3% at 25% 31%); /* Clips the image */
+}
+
+
+.image-placeholder img {
+    min-width: 100%;
+    max-width: 100%;
+
+    min-height: 72.7vh;
+    max-height: 72.7vh;
+
+    object-fit: cover;
+    
+}
+
+.content-section {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Content for the content division */
+
+.content-placeholder {
+    color: black;
+    font-size: 20px;
+
+    max-height: 72.7vh;
+    padding: 2vh;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.content-placeholder p {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;      /* Takes remaining height */
+    padding-right: 1vh;
+
+    scrollbar-width: thin;
+    scrollbar-color: #283618 #FEFAE0 ;
+}
+
+/* Footer */
+.footer {
+    height: 8vh;
+    background-color: #606C38;
+    border-top: 0.5vh solid #BC6C25;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+}
+
+.footer a {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    background-color: #283618;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+}
+.footer a:hover { background-color: #BC6C25; }
