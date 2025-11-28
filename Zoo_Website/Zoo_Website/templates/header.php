@@ -9,5 +9,5 @@
 <body>
 
 <header class="header">
-    <h1>Home Page</h1>
+    <h1><a href = "../public/index.php">Riget Zoo</a></h1>
 </header>
