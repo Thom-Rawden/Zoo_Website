@@ -1,3 +1,4 @@
+<!-- Include the header, navigation and footer templates -->
 <?php include "../templates/header.php" ?>
 <?php include "../templates/nav.php" ?>
 

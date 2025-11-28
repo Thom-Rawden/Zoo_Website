@@ -1,3 +1,4 @@
+<!-- Include the header and footer templates -->
 <?php include "../templates/header.php" ?>
 
 

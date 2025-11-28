@@ -153,3 +153,43 @@ body {
 .footer a:hover {
     background-color: #BC6C25;
 }
+
+/* Booking page styles */
+
+.booking-main-content {
+    flex: 1 1 auto;
+    display: grid;
+    box-sizing: border-box;
+    min-height: 0;
+    padding: 0;
+    justify-items: center;
+}
+
+.booking-content {
+    min-width: 50%;
+    max-width: 50%;
+
+    gap: 2vh;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    overflow: hidden;
+    background-color: red;
+}
+
+.booking-option-wrapper {
+    min-width: 100%;
+
+    background-color: orange;
+}
+
+.booking-option {
+    width: auto;
+    min-height: 25%;
+    max-height: 25%;
+
+    margin: 2vh;
+
+    background-color: green;
+}
