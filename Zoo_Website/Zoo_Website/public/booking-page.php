@@ -7,9 +7,13 @@
         <div class = "booking-option-wrapper">
             <div class = "booking-option">1</div>
             <div class = "booking-option">2</div>
+            <div class = "booking-option">3</div>
+            <div class = "booking-option">4</div>
         </div>
-        <div>
-            3
+        <div class = "booking-summary-wrapper">
+            <div class = "booking-details"></div>
+            <div class = "booking-details"></div>
+            <div class = "booking-button"></div>
         </div>
     </div>
 </main>

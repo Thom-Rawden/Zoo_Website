@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,5 +11,7 @@
 <body>
 
 <header class="header">
+    <div></div>
     <h1><a href = "../public/index.php">Riget Zoo</a></h1>
+    <div><?php if (isset($_SESSION['user_id'])) {echo '<h1><a href = "../public/account.php">Account</a></h1>';} ?></div>
 </header>

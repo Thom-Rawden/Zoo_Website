@@ -19,11 +19,14 @@ body {
     height: 10vh;
     background-color: #283618;
     color: #FEFAE0;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
     justify-content: center;
     align-items: center;
+    text-align: center;
     border-bottom: 0.5vh solid #BC6C25;
 }
+
 .header h1 {
     margin: 0;
 }
@@ -161,7 +164,7 @@ body {
     display: grid;
     box-sizing: border-box;
     min-height: 0;
-    padding: 0;
+    padding: 2vh;
     justify-items: center;
 }
 
@@ -174,14 +177,23 @@ body {
     display: grid;
     grid-template-columns: 2fr 1fr;
 
+
     overflow: hidden;
-    background-color: red;
 }
 
 .booking-option-wrapper {
     min-width: 100%;
 
-    background-color: orange;
+    background-color: #BC6C25;
+
+
+    /* Scrolling for options */
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: #BC6C25 #FEFAE0;
 }
 
 .booking-option {
@@ -189,7 +201,69 @@ body {
     min-height: 25%;
     max-height: 25%;
 
+    margin: 1vh;
+
+    background-color: #606C38;
+
+    /* Scrollng text */
+    width: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    scrollbar-width: thin;
+    scrollbar-color:#283618 #606C38;
+}
+
+.booking-option p {
+    margin: 2vh;
+    /* Break words when wrapping text */
+    word-break: break-all;
+}
+
+.booking-summary-wrapper {
+    min-width: 100%;
+
+    background-color: #BC6C25;
+    display: grid;
+
+    grid-template-rows: 4fr 4fr 1fr;
+
+
+    /* Scrolling for options */
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Booking summary and address preset */
+
+.booking-details {
+    width: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+
+    scrollbar-width: thin;
+    scrollbar-color: #283618 #606C38;
+
+    margin: 1vh;
+
+    background-color: #606C38;
+}
+
+.booking-details p {
+    margin: 2vh;
+    /* Break words when wrapping text */
+    word-break: break-all;
+}
+
+/* Reserve / purchase button */
+
+.booking-button {
+    width: auto;
+    min-height: 5vh;
+
     margin: 2vh;
 
-    background-color: green;
+    background-color: #606C38;
 }
