@@ -13,12 +13,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user && password_verify($password, $user['pass_hash'])) {
         $_SESSION['user_id'] = "test";
         $_SESSION['userFName'] = $user['userFName'];
-        header("Location: ../index.php");
+        header("Location: " . $_SESSION['last_site']);
         exit;
     } else {
         echo "Invalid email or password.";
     }
 }
+
+include "../templates/header.php";
+
 ?>
 
 <form method="post">

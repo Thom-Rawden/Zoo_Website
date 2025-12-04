@@ -1,6 +1,10 @@
 <!-- Include the header, navigation and footer templates -->
-<?php include "../templates/header.php" ?>
-<?php include "../templates/nav.php" ?>
+<?php 
+include "../templates/header.php";
+include "../templates/nav.php";
+
+$_SESSION['last_site'] = '../public/index.php';
+?>
 
 
 <main class="main-content">

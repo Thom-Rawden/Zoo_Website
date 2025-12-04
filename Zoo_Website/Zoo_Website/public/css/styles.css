@@ -152,6 +152,7 @@ body {
     color: #FEFAE0;
     border-radius: 1vh;
     text-decoration: none;
+    transition: 0.3s;
 }
 .footer a:hover {
     background-color: #BC6C25;
@@ -266,4 +267,62 @@ body {
     margin: 2vh;
 
     background-color: #606C38;
+}
+
+
+/* Login and Sign up pages */
+
+.login-main-content {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    min-height: 0;
+    padding: 2vh;
+    justify-items: center;
+}
+
+.login-content {
+    min-width: 25%;
+    max-width: 25%;
+
+    min-height: 100%;
+    max-height: 100%;
+
+    display: grid;
+
+    text-align: center;
+    place-items: center;
+    overflow: hidden;
+
+    padding: 1vh;
+}
+
+.login-option-wrapper {
+    min-width: 100%;
+
+    background-color: #BC6C25;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    padding: 1vh;
+    gap: 1vh;
+}
+
+.login-option {
+    width: auto;
+    background-color: #606C38;
+}
+
+.login-option a {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.login-option a:hover {
+    background-color: #BC6C25;
 }

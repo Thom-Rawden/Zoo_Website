@@ -1,3 +1,15 @@
+<!-- Redirect if not logged in -->
+<?php
+
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['last_site'] = '../public/booking-page.php';
+    header("Location: ../login-signup/login-signup-page.php");
+    exit;
+}
+?>
 <!-- Include the header and footer templates -->
 <?php include "../templates/header.php" ?>
 
