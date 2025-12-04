@@ -9,7 +9,7 @@ include "../templates/header.php";
         <div class = "login-option-wrapper">
 
             <div class = "login-option">
-                <h1><a href='login.php'>Login</a></h1>
+                <h1 class = "login-option"><a href='login.php'>Login</a></h1>
             </div>
 
             <div class = "login-option">

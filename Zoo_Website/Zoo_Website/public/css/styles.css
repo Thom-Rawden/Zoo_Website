@@ -299,27 +299,56 @@ body {
 .login-option-wrapper {
     min-width: 100%;
 
-    background-color: #BC6C25;
+    background-color: #606C38;
+    border: 1vh solid #BC6C25;
 
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
 
     padding: 1vh;
     gap: 1vh;
 }
 
-.login-option {
-    width: auto;
-    background-color: #606C38;
+.login-option-wrapper p {
+    color: #FEFAE0;
 }
 
-.login-option a {
+.login-option {
+    width: auto;
+}
+
+.login-option input {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.login-option button {
+
     min-width: 8vw;
     text-align: center;
     padding: 1vh 2vh;
+
+    transition: 0.3s;
+}
+
+.login-option button:hover {
+    background-color: #BC6C25;
     color: #FEFAE0;
+}
+
+.login-option a {
+    
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+
+    color: #FEFAE0;
+
     border-radius: 1vh;
     text-decoration: none;
+
     transition: 0.3s;
 }
 

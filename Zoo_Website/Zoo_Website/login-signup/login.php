@@ -2,6 +2,8 @@
 session_start();
 require 'db.php';
 
+$error = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -16,16 +18,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: " . $_SESSION['last_site']);
         exit;
     } else {
-        echo "Invalid email or password.";
+        $error = "<p>Invalid email or password. <br><a href = '../login-signup/forgotten-password.php'>Forgotten Password?</a></p>";
     }
 }
 
 include "../templates/header.php";
 
 ?>
+<div class = "login-main-content">
+    <div class = "login-content">
 
-<form method="post">
-    Email: <input type="email" name="email" required><br>
-    Password: <input type="password" name="password" required><br>
-    <button type="submit">Login</button>
-</form>
+            <form class = "login-option-wrapper" method="post">
+
+                <div class = "login-option">
+                    <input type="email" name="email" placeholder="Email" required><br>
+                </div>
+
+                <div class = "login-option">
+                    <input type="password" name="password" placeholder="Password" required><br>
+                </div>
+
+                <div class = "login-option">
+                    <button type="submit">Login</button>
+                </div>
+
+                <?php echo $error ?>
+
+    </div>
+</div>
+
+<?php
+include "../templates/footer.php";
+?>

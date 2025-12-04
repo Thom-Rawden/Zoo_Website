@@ -6,7 +6,7 @@
     <?php if (isset($_SESSION['user_id'])) {
         echo '<a href="../login-signup/logout.php">Logout</a>';
     } else {
-    echo '<a href="../login-signup/login-signup-page.php">Login / Sign up</a>';
+    echo '<a href="../login-signup/login-signup-page.php">Login / Sign Up</a>';
     }
     ?>
 </nav>
