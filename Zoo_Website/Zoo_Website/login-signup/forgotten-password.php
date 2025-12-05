@@ -2,6 +2,8 @@
 session_start();
 require 'db.php';
 
+$error = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
 
@@ -21,14 +23,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../login-signup/reset-password.php?token=$token");
         exit;
     } else {
-        echo "Email Not Found";
+        $error = "<p>Email Not Found</p>";
     }
 }
 
 include "../templates/header.php";
 ?>
 
-<form method="post">
-    Email: <input type="email" name="email" required><br>
-    <button type="submit">Reset Password</button>
-</form>
+<div class = "login-main-content">
+    <div class = "login-content">
+
+            <form class = "login-option-wrapper" method="post">
+
+                <h1>Forgotten Password</h1>
+
+                <div class = "login-option">
+                    <input type="email" name="email" placeholder="Email" required><br>
+                </div>
+
+                <div class = "login-option">
+                    <button type="submit">Reset Password</button>
+                </div>
+
+                <?php echo $error ?>
+
+    </div>
+</div>
+
+<?php
+include "../templates/footer.php";
+?>

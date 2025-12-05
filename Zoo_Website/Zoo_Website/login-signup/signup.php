@@ -44,6 +44,8 @@ include "../templates/header.php";
 
             <form class = "login-option-wrapper" method="post">
 
+                <h1>Sign Up</h1>
+
                 <div class = "login-option">
                     <input type="text" name="name" placeholder="Name" required><br>
                 </div>

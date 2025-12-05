@@ -30,6 +30,8 @@ include "../templates/header.php";
 
             <form class = "login-option-wrapper" method="post">
 
+                <h1>Login</h1>
+
                 <div class = "login-option">
                     <input type="email" name="email" placeholder="Email" required><br>
                 </div>
