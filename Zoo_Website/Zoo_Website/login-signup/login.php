@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['pass_hash'])) {
-        $_SESSION['user_id'] = "test";
+        $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['userFName'] = $user['userFName'];
         header("Location: " . $_SESSION['last_site']);
         exit;
@@ -45,6 +45,8 @@ include "../templates/header.php";
                 </div>
 
                 <?php echo $error ?>
+            
+            </form>
 
     </div>
 </div>

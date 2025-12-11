@@ -223,7 +223,7 @@ body {
 
 .booking-summary-wrapper {
     min-width: 100%;
-
+    
     background-color: #BC6C25;
     display: grid;
 
@@ -239,6 +239,8 @@ body {
 /* Booking summary and address preset */
 
 .booking-details {
+    text-align: center;
+
     width: auto;
     overflow-y: auto;
     overflow-x: hidden;
@@ -261,12 +263,29 @@ body {
 /* Reserve / purchase button */
 
 .booking-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     width: auto;
     min-height: 5vh;
+}
 
-    margin: 2vh;
-
-    background-color: #606C38;
+.booking-button button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    background-color: #283618;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.booking-button button:hover {
+    background-color: #4E2D0F;
 }
 
 
@@ -354,4 +373,96 @@ body {
 
 .login-option a:hover {
     background-color: #BC6C25;
+}
+
+
+/* Mobile Responsiveness */
+@media (max-width: 800px) {
+  /* Header: stack into single column and center */
+  .header {
+    grid-template-columns: 1fr;
+    row-gap: 0.5vh;
+    padding: 1vh;
+    height: auto;
+    text-align: center;
+  }
+  .header h1 { font-size: 6.5vw; margin: 0.5vh 0; }
+  .header a { min-width: auto; padding: 0.6vh 1vh; font-size: 4.2vw; }
+
+  /* Nav: wrap and allow horizontal scroll if needed */
+  .nav {
+    height: auto;
+    padding: 0.6vh 1vh;
+    gap: 0.6vh;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav a { font-size: 4vw; padding: 0.6vh 1vh; }
+
+  /* Main: single column flow */
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: 1vh;
+    padding: 1vh;
+  }
+  .image-placeholder { clip-path: none; border-radius: 1vh; height: 28vh; }
+  .image-placeholder img { object-fit: cover; }
+
+  /* Content readability */
+  .content-placeholder { padding: 3vw; font-size: 4vw; }
+  .content-placeholder p { font-size: 3.8vw; }
+
+  /* Booking: single-column, full-width cards */
+  .booking-main-content { padding: 2vh 1vh; }
+  .booking-content {
+    min-width: 94%;
+    max-width: 94%;
+    grid-template-columns: 1fr;
+    gap: 1vh;
+  }
+
+  .booking-option-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0.6vh;
+    gap: 1vh;
+  }
+
+  .booking-option {
+    margin: 0;
+    padding: 1vh;
+    background-color: #606C38;
+    border-radius: 0.6vh;
+  }
+
+  /* Forms inline-friendly on larger phones, stacked on very small */
+  .booking-option form {
+    display: flex;
+    gap: 0.8vh;
+    align-items: center;
+  }
+  .booking-option label { flex: 1 1 auto; font-size: 4vw; color: #FEFAE0; margin: 0; }
+  .booking-option input[type="date"] {
+    flex: 0 0 48%;
+    padding: 0.8vh;
+    font-size: 3.8vw;
+    border-radius: 0.6vh;
+  }
+  .booking-option button {
+    flex: 0 0 48%;
+    padding: 1vh;
+    font-size: 3.8vw;
+    border-radius: 0.6vh;
+  }
+
+  /* Booking messages */
+  .booking-message { font-size: 4vw; padding: 1vh; margin-bottom: 0.8vh; border-radius: 0.6vh; }
+  .booking-message.error { background: #ffeded; color: #8b0000; }
+  .booking-message.success { background: #eaffef; color: #006400; }
+
+  /* Login forms widen slightly on mobile */
+  .login-content { min-width: 90%; max-width: 90%; padding: 1vh; }
+
+  /* Prevent horizontal overflow on small screens */
+  body, .main-content, .booking-content { overflow-x: hidden; }
 }
