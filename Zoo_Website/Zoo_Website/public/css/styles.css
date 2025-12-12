@@ -269,23 +269,9 @@ body {
     
     width: auto;
     min-height: 5vh;
-}
+    margin: 1vh;
 
-.booking-button button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 8vw;
-    text-align: center;
-    padding: 1vh 2vh;
-    background-color: #283618;
-    color: #FEFAE0;
-    border-radius: 1vh;
-    text-decoration: none;
-    transition: 0.3s;
-}
-.booking-button button:hover {
-    background-color: #4E2D0F;
+    background-color: #606C38;
 }
 
 
@@ -466,3 +452,4 @@ body {
   /* Prevent horizontal overflow on small screens */
   body, .main-content, .booking-content { overflow-x: hidden; }
 }
+

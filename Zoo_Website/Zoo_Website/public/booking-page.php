@@ -2,11 +2,34 @@
 <?php
 session_start();
 
+
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['last_site'] = '../public/booking-page.php';
     header("Location: ../login-signup/login-signup-page.php");
     exit;
 }
+
+// Function to get user bookings
+function get_user_bookings(?int $user_id): array
+{
+    if (empty($user_id) || !isset($GLOBALS['pdo'])) {
+        return [];
+    }
+
+    try {
+        $pdo = $GLOBALS['pdo']; 
+        $stmt = $pdo->prepare("SELECT * FROM bookings WHERE user_id = :id");
+        $stmt->execute(['id' => $user_id]);
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows ?: [];
+    } catch (Exception $e) {
+        error_log('get_user_bookings error: ' . $e->getMessage());
+        return [];
+    }
+}
+
+
 ?>
 <?php include "../templates/header.php" ?>
 
@@ -33,7 +56,9 @@ if (!isset($_SESSION['user_id'])) {
                     <input type="hidden" name="room_id" value="<?php echo (int)$r['id']; ?>">
                     <label for="room_<?php echo (int)$r['id']; ?>"><?php echo htmlspecialchars($r['label']); ?></label>
                     <input type="date" id="room_<?php echo (int)$r['id']; ?>" name="room" required min="<?php echo $minDate; ?>">
-                    <button type="submit">Book</button>
+                    <button type="submit">Reserve</button>
+
+                    
                 </form>
 
                 <?php
@@ -54,12 +79,15 @@ if (!isset($_SESSION['user_id'])) {
         </div>
         
         <form class="booking-summary-wrapper" method="post" action="../booking/zoo-process-booking.php" novalidate>
-            <div class="booking-details"></div>
             <div class="booking-details">
                 <h2>Book Zoo Pass</h2>
 
-                <label for="Zoo Pass"></label>
+                <label for="zoo_pass"></label>
                 <input type="date" id="zoo_pass" name="zoo_pass" required min="<?php echo $minDate; ?>">
+
+                <input type="number" id="party_size" name="party_size" placeholder="visitors" min="1" max="10" required>
+
+                <button type="submit">Reserve</button>
 
                 <?php
 
@@ -73,14 +101,38 @@ if (!isset($_SESSION['user_id'])) {
                         unset($_SESSION['zoo-booking_success']);
                     }
                 ?>
+            </div>
 
-                <input type="number" id="party_size" name="party_size" placeholder="visitors" min="1" max="10" required>
+            <!-- Show Bookings Summary -->
+            <div class="booking-details">
+                <h2>Your Bookings Summary</h2>
+                
+                <?php
+                require_once __DIR__ . '/../login-signup/db.php';
+
+                $bookings = get_user_bookings($_SESSION['user_id'] ?? null);
+                if (empty($bookings)):
+                ?>
+                    <p>No bookings found.</p>
+                <?php
+                else:
+
+                foreach ($bookings as $b):
+                    ?>
+                    
+                    <div class="booking-summary-item">
+                        <span class="booking-type"><?php echo htmlspecialchars(ucfirst($b['type'])); ?></span>
+                        <span class="booking-date"><?php echo htmlspecialchars(date("d-m-Y", strtotime(($b['booking_date'])))); ?></span>
+                        <?php if ($b['type'] === 'zoo'): ?>
+                            <span class="booking-party-size">Visitors: <?php echo (int)$b['party_size']; ?></span>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
 
             </div>
             <div class="booking-button">
-
-                <button type="submit">Book</button>
-
+                <a href="../public/account-page.php">Confirm Bookings</a>
             </div>
             </form>
 

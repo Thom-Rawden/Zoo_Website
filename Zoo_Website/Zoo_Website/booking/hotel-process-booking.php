@@ -43,8 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
 
         } else {
-            $stmt = $pdo->prepare("INSERT INTO bookings (user_id, room_id, booking_date, type) VALUES (?, ?, ?, ?)");
-            $stmt->execute([$_SESSION['user_id'], $room_id, $room_date, 'hotel']);
+            $stmt = $pdo->prepare("INSERT INTO bookings (user_id, room_id, booking_date, type, status) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$_SESSION['user_id'], $room_id, $room_date, 'hotel', 'pending']);
 
             header("Location: ../public/booking-page.php");
             exit;

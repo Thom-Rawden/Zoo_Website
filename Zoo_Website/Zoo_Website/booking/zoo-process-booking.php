@@ -14,7 +14,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $pass_date_raw = trim($_POST['zoo_pass'] ?? '');
-$party_size = max(1, (int)($_POST['party_size'] ?? 1));
+
+// validate party size input
+$party_raw = $_POST['party_size'] ?? null;
+$party_size = filter_var($party_raw, FILTER_VALIDATE_INT, ['options'=>['min_range'=>1, 'max_range'=>10]]);
+if ($party_size === false) {
+    $_SESSION['zoo-booking_error'] = 'Please enter a valid number of visitors (1-10).';
+    header("Location: ../public/booking-page.php");
+    exit;
+}
 
 // Validate date strictly (YYYY-MM-DD)
 $dateObj = DateTime::createFromFormat('Y-m-d', $pass_date_raw);
@@ -36,7 +44,7 @@ if ($d < $today) {
 
 try {
     // Check date availability
-    $stmt = $pdo->prepare("SELECT COALESCE(SUM(party_size),0) FROM bookings WHERE type = ? AND booking_date = ? AND status = 'confirmed'");
+    $stmt = $pdo->prepare("SELECT COALESCE(SUM(party_size),0) FROM bookings WHERE type = ? AND booking_date = ?");
     $stmt->execute(['zoo', $pass_date_raw]);
     $booked = (int)$stmt->fetchColumn();
 
@@ -47,8 +55,8 @@ try {
     }
 
     // Insert booking including party_size and user_id (if available)
-    $ins = $pdo->prepare("INSERT INTO bookings (user_id, booking_date, type, party_size, status) VALUES (?, ?, ?, ?, 'confirmed')");
-    $ins->execute([$_SESSION['user_id'] ?? null, $pass_date_raw, 'zoo', $party_size]);
+    $ins = $pdo->prepare("INSERT INTO bookings (user_id, booking_date, type, party_size, status) VALUES (?, ?, ?, ?, ?)");
+    $ins->execute([$_SESSION['user_id'] ?? null, $pass_date_raw, 'zoo', $party_size, 'pending']);
 
     $_SESSION['zoo-booking_success'] = 'Booking confirmed.';
     header("Location: ../public/booking-page.php");
