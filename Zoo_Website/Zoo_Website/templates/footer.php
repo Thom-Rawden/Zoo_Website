@@ -1,7 +1,7 @@
 <footer class="footer">
-    <a href="#">Cookie Policy</a>
-    <a href="#">Help</a>
-    <a href="#">Contact Information</a>
+    <a href="../public/cookie-policy.php">Cookie Policy</a>
+    <a href="../public/help.php">Help</a>
+    <a href="../public/contact.php">Contact Information</a>
 </footer>
 
 </body>
