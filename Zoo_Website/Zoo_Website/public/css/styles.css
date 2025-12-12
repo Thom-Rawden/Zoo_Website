@@ -32,7 +32,541 @@ body {
 }
 
 /* header link decoration */
+.header a {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    background-color: #283618;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: 0.3s;
+}
 
+.header a:hover {
+    background-color: #BC6C25;
+}
+
+/* Navigation */
+.nav {
+    height: 8vh;
+    background-color: #606C38;
+    border-bottom: 0.5vh solid #BC6C25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+}
+.nav a {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    background-color: #283618;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.nav a:hover { background-color: #BC6C25; }
+
+.nav .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* top-level dropdown anchor: same sizing / colours as .nav a */
+.nav .dropdown > a {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    background-color: #283618;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+.nav .dropdown > a:hover,
+.nav .dropdown > a:focus {
+    background-color: #BC6C25;
+}
+
+/* dropdown container */
+.nav .dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.4vh);
+    left: 0;
+    background-color: #606C38;
+    border-radius: 6px;
+    padding: 0.4vh;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    z-index: 50;
+    min-width: 10rem;
+}
+
+/* Reveal on hover or keyboard focus */
+.nav .dropdown:hover .dropdown-menu,
+.nav .dropdown:focus-within .dropdown-menu {
+    display: block;
+}
+
+/* menu items use the same visual style as top-level nav links */
+.nav .dropdown .dropdown-menu a {
+    display: block;
+    padding: 0.6vh 0.9vw;
+    color: #FEFAE0;
+    text-decoration: none;
+    border-radius: 6px;
+    background-color: #283618;
+    margin: 0.25vh 0;
+    transition: 0.3s;
+}
+.nav .dropdown .dropdown-menu a:hover,
+.nav .dropdown .dropdown-menu a:focus {
+    background-color: #BC6C25;
+    color: #fff;
+}
+
+
+/* Dropdown: keep visual appearance identical to other .nav links,
+   show menu on hover / focus-within for keyboard accessibility */
+.nav .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* top-level dropdown anchor: same sizing / colours as .nav a */
+.nav .dropdown > a {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    background-color: #283618;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+.nav .dropdown > a:hover,
+.nav .dropdown > a:focus {
+    background-color: #BC6C25;
+}
+
+/* dropdown container */
+.nav .dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.4vh);
+    left: 0;
+    background-color: #606C38;
+    border-radius: 6px;
+    padding: 0.4vh;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    z-index: 50;
+    min-width: 10rem;
+}
+
+/* Reveal on hover or keyboard focus */
+.nav .dropdown:hover .dropdown-menu,
+.nav .dropdown:focus-within .dropdown-menu {
+    display: block;
+}
+
+/* menu items use the same visual style as top-level nav links */
+.nav .dropdown .dropdown-menu a {
+    display: block;
+    padding: 0.6vh 0.9vw;
+    color: #FEFAE0;
+    text-decoration: none;
+    border-radius: 6px;
+    background-color: #283618;
+    margin: 0.25vh 0;
+    transition: 0.3s;
+}
+.nav .dropdown .dropdown-menu a:hover,
+.nav .dropdown .dropdown-menu a:focus {
+    background-color: #BC6C25;
+    color: #fff;
+}
+
+/* Main content grows to fill remaining space between header/nav and footer */
+.main-content {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2vh;
+    box-sizing: border-box;
+    min-height: 0;
+    padding: 0;
+}
+
+/* Image Column */
+.image-section {
+    height: 100%;
+    min-height: 0;
+}
+
+/* Image placeholder */
+.image-placeholder {
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    object-fit: cover;
+    font-size: 2.5vh;
+    box-sizing: border-box;
+    clip-path: circle(71.3% at 25% 31%);
+    min-height: 0;
+}
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Content Column */
+.content-section {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Content placeholder with internal scrolling */
+.content-placeholder {
+    color: black;
+    font-size: 20px;
+    padding: 2vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+.content-placeholder p {
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    padding-right: 1vh;
+    scrollbar-width: thin;
+    scrollbar-color: #283618 #FEFAE0;
+}
+
+/* Booking page styles */
+.booking-main-content {
+    flex: 1 1 auto;
+    display: grid;
+    box-sizing: border-box;
+    min-height: 0;
+    padding: 2vh;
+    justify-items: center;
+}
+
+.booking-content {
+    min-width: 50%;
+    max-width: 50%;
+    gap: 2vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    overflow: hidden;
+}
+
+.booking-option-wrapper {
+    min-width: 100%;
+    background-color: #BC6C25;
+    /* Scrolling for options */
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #BC6C25 #FEFAE0;
+}
+
+.booking-option {
+    width: auto;
+    min-height: 25%;
+    max-height: 25%;
+    margin: 1vh;
+    background-color: #606C38;
+    /* Scrolling text */
+    width: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    scrollbar-width: thin;
+    scrollbar-color:#283618 #606C38;
+}
+
+.booking-option p {
+    margin: 2vh;
+    /* Break words when wrapping text */
+    word-break: break-all;
+}
+
+.booking-summary-wrapper {
+    min-width: 100%;
+    background-color: #BC6C25;
+    display: grid;
+    grid-template-rows: 4fr 4fr 1fr;
+    /* Scrolling for options */
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Booking summary and address preset */
+.booking-details {
+    text-align: center;
+    width: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    scrollbar-width: thin;
+    scrollbar-color: #283618 #606C38;
+    margin: 1vh;
+    background-color: #606C38;
+}
+
+.booking-details p {
+    margin: 2vh;
+    /* Break words when wrapping text */
+    word-break: break-all;
+}
+
+/* Reserve / purchase button */
+.booking-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    min-height: 5vh;
+    margin: 1vh;
+    background-color: #606C38;
+}
+
+/* Login and Sign up pages */
+.login-main-content {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    min-height: 0;
+    padding: 2vh;
+    justify-items: center;
+}
+
+.login-content {
+    min-width: 25%;
+    max-width: 25%;
+    min-height: 100%;
+    max-height: 100%;
+    display: grid;
+    text-align: center;
+    place-items: center;
+    overflow: hidden;
+    padding: 1vh;
+}
+
+.login-option-wrapper {
+    min-width: 100%;
+    background-color: #606C38;
+    border: 1vh solid #BC6C25;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1vh;
+    gap: 1vh;
+}
+
+.login-option-wrapper p {
+    color: #FEFAE0;
+}
+
+.login-option {
+    width: auto;
+}
+
+.login-option input {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.login-option button {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    transition: 0.3s;
+}
+
+.login-option button:hover {
+    background-color: #BC6C25;
+    color: #FEFAE0;
+}
+
+.login-option a {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.login-option a:hover {
+    background-color: #BC6C25;
+}
+
+/* Footer (fixed height) */
+.footer {
+    height: 8vh;
+    background-color: #606C38;
+    border-top: 0.5vh solid #BC6C25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+}
+.footer a {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    background-color: #283618;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.footer a:hover {
+    background-color: #BC6C25;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 800px) {
+  /* Header: stack into single column and center */
+  .header {
+    grid-template-columns: 1fr;
+    row-gap: 0.5vh;
+    padding: 1vh;
+    height: auto;
+    text-align: center;
+  }
+  .header h1 { font-size: 6.5vw; margin: 0.5vh 0; }
+  .header a { min-width: auto; padding: 0.6vh 1vh; font-size: 4.2vw; }
+
+  /* Nav: wrap and allow horizontal scroll if needed */
+  .nav {
+    height: auto;
+    padding: 0.6vh 1vh;
+    gap: 0.6vh;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav a { font-size: 4vw; padding: 0.6vh 1vh; }
+
+  /* Main: single column flow */
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: 1vh;
+    padding: 1vh;
+  }
+  .image-placeholder { clip-path: none; border-radius: 1vh; height: 28vh; }
+  .image-placeholder img { object-fit: cover; }
+
+  /* Content readability */
+  .content-placeholder { padding: 3vw; font-size: 4vw; }
+  .content-placeholder p { font-size: 3.8vw; }
+
+  /* Booking: single-column, full-width cards */
+  .booking-main-content { padding: 2vh 1vh; }
+  .booking-content {
+    min-width: 94%;
+    max-width: 94%;
+    grid-template-columns: 1fr;
+    gap: 1vh;
+  }
+
+  .booking-option-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0.6vh;
+    gap: 1vh;
+  }
+
+  .booking-option {
+    margin: 0;
+    padding: 1vh;
+    background-color: #606C38;
+    border-radius: 0.6vh;
+  }
+
+  /* Forms inline-friendly on larger phones, stacked on very small */
+  .booking-option form {
+    display: flex;
+    gap: 0.8vh;
+    align-items: center;
+  }
+  .booking-option label { flex: 1 1 auto; font-size: 4vw; color: #FEFAE0; margin: 0; }
+  .booking-option input[type="date"] {
+    flex: 0 0 48%;
+    padding: 0.8vh;
+    font-size: 3.8vw;
+    border-radius: 0.6vh;
+  }
+  .booking-option button {
+    flex: 0 0 48%;
+    padding: 1vh;
+    font-size: 3.8vw;
+    border-radius: 0.6vh;
+  }
+
+  /* Booking messages */
+  .booking-message { font-size: 4vw; padding: 1vh; margin-bottom: 0.8vh; border-radius: 0.6vh; }
+  .booking-message.error { background: #ffeded; color: #8b0000; }
+  .booking-message.success { background: #eaffef; color: #006400; }
+
+  /* Login forms widen slightly on mobile */
+  .login-content { min-width: 90%; max-width: 90%; padding: 1vh; }
+
+  /* Prevent horizontal overflow on small screens */
+  body, .main-content, .booking-content { overflow-x: hidden; }
+}
+
+/* Reset / base */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #FEFAE0;
+    font-family: monospace;
+    color: #283618;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header (fixed height) */
+.header {
+    height: 10vh;
+    background-color: #283618;
+    color: #FEFAE0;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 0.5vh solid #BC6C25;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+/* header link decoration */
 .header a {
     min-width: 8vw;
     text-align: center;
@@ -134,6 +668,170 @@ body {
     scrollbar-color: #283618 #FEFAE0;
 }
 
+/* Booking page styles */
+.booking-main-content {
+    flex: 1 1 auto;
+    display: grid;
+    box-sizing: border-box;
+    min-height: 0;
+    padding: 2vh;
+    justify-items: center;
+}
+
+.booking-content {
+    min-width: 50%;
+    max-width: 50%;
+    gap: 2vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    overflow: hidden;
+}
+
+.booking-option-wrapper {
+    min-width: 100%;
+    background-color: #BC6C25;
+    /* Scrolling for options */
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #BC6C25 #FEFAE0;
+}
+
+.booking-option {
+    width: auto;
+    min-height: 25%;
+    max-height: 25%;
+    margin: 1vh;
+    background-color: #606C38;
+    /* Scrolling text */
+    width: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    scrollbar-width: thin;
+    scrollbar-color:#283618 #606C38;
+}
+
+.booking-option p {
+    margin: 2vh;
+    /* Break words when wrapping text */
+    word-break: break-all;
+}
+
+.booking-summary-wrapper {
+    min-width: 100%;
+    background-color: #BC6C25;
+    display: grid;
+    grid-template-rows: 4fr 4fr 1fr;
+    /* Scrolling for options */
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Booking summary and address preset */
+.booking-details {
+    text-align: center;
+    width: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    scrollbar-width: thin;
+    scrollbar-color: #283618 #606C38;
+    margin: 1vh;
+    background-color: #606C38;
+}
+
+.booking-details p {
+    margin: 2vh;
+    /* Break words when wrapping text */
+    word-break: break-all;
+}
+
+/* Reserve / purchase button */
+.booking-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    min-height: 5vh;
+    margin: 1vh;
+    background-color: #606C38;
+}
+
+/* Login and Sign up pages */
+.login-main-content {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    min-height: 0;
+    padding: 2vh;
+    justify-items: center;
+}
+
+.login-content {
+    min-width: 25%;
+    max-width: 25%;
+    min-height: 100%;
+    max-height: 100%;
+    display: grid;
+    text-align: center;
+    place-items: center;
+    overflow: hidden;
+    padding: 1vh;
+}
+
+.login-option-wrapper {
+    min-width: 100%;
+    background-color: #606C38;
+    border: 1vh solid #BC6C25;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1vh;
+    gap: 1vh;
+}
+
+.login-option-wrapper p {
+    color: #FEFAE0;
+}
+
+.login-option {
+    width: auto;
+}
+
+.login-option input {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.login-option button {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    transition: 0.3s;
+}
+
+.login-option button:hover {
+    background-color: #BC6C25;
+    color: #FEFAE0;
+}
+
+.login-option a {
+    min-width: 8vw;
+    text-align: center;
+    padding: 1vh 2vh;
+    color: #FEFAE0;
+    border-radius: 1vh;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.login-option a:hover {
+    background-color: #BC6C25;
+}
+
 /* Footer (fixed height) */
 .footer {
     height: 8vh;
@@ -157,210 +855,6 @@ body {
 .footer a:hover {
     background-color: #BC6C25;
 }
-
-/* Booking page styles */
-
-.booking-main-content {
-    flex: 1 1 auto;
-    display: grid;
-    box-sizing: border-box;
-    min-height: 0;
-    padding: 2vh;
-    justify-items: center;
-}
-
-.booking-content {
-    min-width: 50%;
-    max-width: 50%;
-
-    gap: 2vh;
-
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-
-
-    overflow: hidden;
-}
-
-.booking-option-wrapper {
-    min-width: 100%;
-
-    background-color: #BC6C25;
-
-
-    /* Scrolling for options */
-    margin: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    scrollbar-width: thin;
-    scrollbar-color: #BC6C25 #FEFAE0;
-}
-
-.booking-option {
-    width: auto;
-    min-height: 25%;
-    max-height: 25%;
-
-    margin: 1vh;
-
-    background-color: #606C38;
-
-    /* Scrollng text */
-    width: auto;
-    overflow-y: auto;
-    overflow-x: hidden;
-    flex-grow: 1;
-    scrollbar-width: thin;
-    scrollbar-color:#283618 #606C38;
-}
-
-.booking-option p {
-    margin: 2vh;
-    /* Break words when wrapping text */
-    word-break: break-all;
-}
-
-.booking-summary-wrapper {
-    min-width: 100%;
-    
-    background-color: #BC6C25;
-    display: grid;
-
-    grid-template-rows: 4fr 4fr 1fr;
-
-
-    /* Scrolling for options */
-    margin: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-/* Booking summary and address preset */
-
-.booking-details {
-    text-align: center;
-
-    width: auto;
-    overflow-y: auto;
-    overflow-x: hidden;
-    flex-grow: 1;
-
-    scrollbar-width: thin;
-    scrollbar-color: #283618 #606C38;
-
-    margin: 1vh;
-
-    background-color: #606C38;
-}
-
-.booking-details p {
-    margin: 2vh;
-    /* Break words when wrapping text */
-    word-break: break-all;
-}
-
-/* Reserve / purchase button */
-
-.booking-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    width: auto;
-    min-height: 5vh;
-    margin: 1vh;
-
-    background-color: #606C38;
-}
-
-
-/* Login and Sign up pages */
-
-.login-main-content {
-    flex: 1 1 auto;
-    box-sizing: border-box;
-    min-height: 0;
-    padding: 2vh;
-    justify-items: center;
-}
-
-.login-content {
-    min-width: 25%;
-    max-width: 25%;
-
-    min-height: 100%;
-    max-height: 100%;
-
-    display: grid;
-
-    text-align: center;
-    place-items: center;
-    overflow: hidden;
-
-    padding: 1vh;
-}
-
-.login-option-wrapper {
-    min-width: 100%;
-
-    background-color: #606C38;
-    border: 1vh solid #BC6C25;
-
-    display: grid;
-    grid-template-columns: 1fr;
-
-    padding: 1vh;
-    gap: 1vh;
-}
-
-.login-option-wrapper p {
-    color: #FEFAE0;
-}
-
-.login-option {
-    width: auto;
-}
-
-.login-option input {
-    width: 100%;
-    padding: 12px;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.login-option button {
-
-    min-width: 8vw;
-    text-align: center;
-    padding: 1vh 2vh;
-
-    transition: 0.3s;
-}
-
-.login-option button:hover {
-    background-color: #BC6C25;
-    color: #FEFAE0;
-}
-
-.login-option a {
-    
-    min-width: 8vw;
-    text-align: center;
-    padding: 1vh 2vh;
-
-    color: #FEFAE0;
-
-    border-radius: 1vh;
-    text-decoration: none;
-
-    transition: 0.3s;
-}
-
-.login-option a:hover {
-    background-color: #BC6C25;
-}
-
 
 /* Mobile Responsiveness */
 @media (max-width: 800px) {
@@ -452,4 +946,3 @@ body {
   /* Prevent horizontal overflow on small screens */
   body, .main-content, .booking-content { overflow-x: hidden; }
 }
-

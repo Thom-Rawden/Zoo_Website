@@ -38,78 +38,115 @@ function get_user_bookings(?int $user_id): array
     }
 }
 
+function get_zoo_price(int $party_size, bool $education_visit): float
+{
+
+    $base_price = 15.0; // base price for up to 2 people
+    $extra_person_price = 5.0; // price per extra person
+
+    if ($party_size <= 2) {
+        $fee = $base_price;
+    } else {
+        $fee = $base_price + (($party_size - 2) * $extra_person_price);
+    }
+    if ($education_visit) {
+        $fee *= 0.8; // 20% discount for educational visits
+    }
+    return $fee;
+}
+
+$hotelPrices = [
+    1 => 30,
+    2 => 30,
+    3 => 50,
+    4 => 70
+];
+
+$price = 0.0;
+
 include "../templates/header.php";
 ?>
 
 <main class="booking-main-content">
-  <div class="booking-content">
+<div class="booking-content">
 
     <div class="booking-option-wrapper">
-      <h2>Your bookings</h2>
+    <h2>Your bookings</h2>
 
-      <?php
-      // flash messages
-      if (!empty($_SESSION['booking_error'])) {
-          echo '<div class="booking-message error">'.htmlspecialchars($_SESSION['booking_error']).'</div>';
-          unset($_SESSION['booking_error']);
-      }
-      if (!empty($_SESSION['booking_success'])) {
-          echo '<div class="booking-message success">'.htmlspecialchars($_SESSION['booking_success']).'</div>';
-          unset($_SESSION['booking_success']);
-      }
+    <?php
+    // flash messages
+    if (!empty($_SESSION['booking_error'])) {
+        echo '<div class="booking-message error">'.htmlspecialchars($_SESSION['booking_error']).'</div>';
+        unset($_SESSION['booking_error']);
+    }
+    if (!empty($_SESSION['booking_success'])) {
+        echo '<div class="booking-message success">'.htmlspecialchars($_SESSION['booking_success']).'</div>';
+        unset($_SESSION['booking_success']);
+    }
 
-      $user_id = (int)($_SESSION['user_id'] ?? 0);
-      $bookings = get_user_bookings($user_id);
+    $user_id = (int)($_SESSION['user_id'] ?? 0);
+    $bookings = get_user_bookings($user_id);
 
-      if (empty($bookings)): ?>
+    if (empty($bookings)): ?>
         <div class="booking-option">
-          <p>No bookings found.</p>
+        <p>No bookings found.</p>
         </div>
-      <?php else:
+    <?php else:
         foreach ($bookings as $b): ?>
-          <div class="booking-option">
+        <?php
+        // Determine price for hotel bookings
+        if ($b['type'] === 'hotel' && isset($hotelPrices[$b['room_id']])) {
+            $price = '£' . number_format($hotelPrices[$b['room_id']], 2);
+        } else {
+            // Determine price for zoo bookings
+            $priceValue = get_zoo_price((int)$b['party_size'], False);
+            $price = '£' . number_format($priceValue, 2);
+        }
+        ?>
+
+        <div class="booking-option">
             <strong><?php echo htmlspecialchars(ucfirst($b['type']) . ' booking'); ?></strong>
 
             <div class="meta">
-              <div>Room ID: <?php echo htmlspecialchars($b['room_id']); ?></div>
-              <div>Date: <?php echo htmlspecialchars($b['booking_date']); ?></div>
-              <div>Party size: <?php echo (int)$b['party_size']; ?></div>
-              <div>Status: <?php echo htmlspecialchars($b['status']); ?></div>
-              <div>Created: <?php echo htmlspecialchars($b['created_at']); ?></div>
+            <div>Room ID: <?php echo htmlspecialchars($b['room_id']); ?></div>
+            <div>Date: <?php echo htmlspecialchars($b['booking_date']); ?></div>
+            <div>Party size: <?php echo (int)$b['party_size']; ?></div>
+            <div>Status: <?php echo htmlspecialchars($b['status']); ?></div>
+            <div>Created: <?php echo htmlspecialchars($b['created_at']); ?></div>
             </div>
 
             <div class="row" style="margin-top:0.6vh; gap:0.6vw;">
-              <!-- Cancel -->
-              <form method="post" action="../booking/cancel-booking.php" style="display:inline;">
+            <!-- Cancel -->
+            <form method="post" action="../booking/cancel-booking.php" style="display:inline;">
                 <input type="hidden" name="booking_id" value="<?php echo (int)$b['id']; ?>">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
                 <button type="submit" class="btn" onclick="return confirm('Cancel this booking?');">Cancel</button>
-              </form>
+            </form>
 
-              <!-- Confirm  -->
-              <?php if ($b['status'] !== 'confirmed'): ?>
+            <!-- Confirm  -->
+            <?php if ($b['status'] !== 'confirmed'): ?>
                 <form method="post" action="../booking/confirm-booking.php" style="display:inline;">
-                  <input type="hidden" name="booking_id" value="<?php echo (int)$b['id']; ?>">
-                  <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
-                  <button type="submit" class="btn">Confirm</button>
+                <input type="hidden" name="booking_id" value="<?php echo (int)$b['id']; ?>">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+                <button type="submit" class="btn">Purchase <?php echo $price; ?></button>
                 </form>
-              <?php else: ?>
-                <button class="btn" disabled>Confirmed</button>
-              <?php endif; ?>
+            <?php else: ?>
+                <button class="btn" disabled>Purchased</button>
+            <?php endif; ?>
             </div>
-          </div>
-      <?php endforeach;
-      endif;
-      ?>
+        </div>
+    <?php endforeach;
+    endif;
+    ?>
     </div>
 
     <div class="booking-summary-wrapper">
-      <div class="booking-details"></div>
-      <div class="booking-details"></div>
-      <div class="booking-button"></div>
+    <div class="booking-details"></div>
+    <div class="booking-details"></div>
+    <div class="booking-button"></div>
     </div>
 
-  </div>
+</div>
 </main>
 
 <?php include "../templates/footer.php"; ?>

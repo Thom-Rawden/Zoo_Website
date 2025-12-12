@@ -2,6 +2,7 @@
 <?php
 session_start();
 
+$_SESSION['redirect'] = 'booking-page.php';
 
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['last_site'] = '../public/booking-page.php';
@@ -42,10 +43,10 @@ function get_user_bookings(?int $user_id): array
 
             // minimal room list for demo purposes
             $rooms = [
-                ['id'=>1,'label'=>'Room 1 - Standard'],
-                ['id'=>2,'label'=>'Room 2 - Standard'],
-                ['id'=>3,'label'=>'Room 3 - Suite'],
-                ['id'=>4,'label'=>'Room 4 - Family']
+                ['id'=>1,'label'=>'Room 1 - Standard £30, 2 people max'],
+                ['id'=>2,'label'=>'Room 2 - Standard £30, 2 people max'],
+                ['id'=>3,'label'=>'Room 3 - Suite £50, 3 people max'],
+                ['id'=>4,'label'=>'Room 4 - Family £70, 5 people max'],
             ];
             $minDate = date('Y-m-d');
             foreach ($rooms as $r):

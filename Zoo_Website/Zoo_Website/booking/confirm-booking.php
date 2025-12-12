@@ -25,25 +25,25 @@ if ($booking_id <= 0 || empty($token) || empty($_SESSION['csrf_token']) || !hash
 
 try {
     // ensure booking belongs to user
-    $stmt = $pdo->prepare('SELECT id FROM bookings WHERE id = ? AND user_id = ? LIMIT 1');
+    $stmt = $pdo->prepare('SELECT id, status FROM bookings WHERE id = ? AND user_id = ? LIMIT 1');
     $stmt->execute([$booking_id, (int)$user_id]);
-    $found = $stmt->fetchColumn();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$found) {
+    if (!$row) {
         $_SESSION['booking_error'] = 'Booking not found.';
         header('Location: ../public/account-page.php');
         exit;
     }
 
-    // delete booking
-    $del = $pdo->prepare('DELETE FROM bookings WHERE id = ? AND user_id = ?');
-    $del->execute([$booking_id, (int)$user_id]);
+    // update status to confirmed
+    $upd = $pdo->prepare("UPDATE bookings SET status = 'confirmed' WHERE id = ? AND user_id = ?");
+    $upd->execute([$booking_id, (int)$user_id]);
 
-    $_SESSION['booking_success'] = 'Booking cancelled.';
+    $_SESSION['booking_success'] = 'Booking confirmed.';
     header('Location: ../public/account-page.php');
     exit;
 } catch (Exception $e) {
-    error_log('cancel-booking error: ' . $e->getMessage());
+    error_log('confirm-booking error: ' . $e->getMessage());
     $_SESSION['booking_error'] = 'Server error, please try again.';
     header('Location: ../public/account-page.php');
     exit;
